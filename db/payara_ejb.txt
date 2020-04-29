@@ -1,0 +1,7 @@
+WEB-INF/classes/_MyBlogPU logout successful]
+UsersFacade: [java:global/MyBlog_test/UsersFacade, java:global/MyBlog_test/UsersFacade!UsersFacade]
+GroupuserFacade: [java:global/MyBlog_test/GroupuserFacade, java:global/MyBlog_test/GroupuserFacade!GroupuserFacade]
+ArticlesFacade: [java:global/MyBlog_test/ArticlesFacade, java:global/MyBlog_test/ArticlesFacade!ArticlesFacade]
+RolesFacade: [java:global/MyBlog_test/RolesFacade!RolesFacade, java:global/MyBlog_test/RolesFacade]
+MessagesFacade: [java:global/MyBlog_test/MessagesFacade, java:global/MyBlog_test/MessagesFacade!MessagesFacade]
+GroupuserHasArticlesFacade: [java:global/MyBlog_test/GroupuserHasArticlesFacade!GroupuserHasArticlesFacade, java:global/MyBlog_test/GroupuserHasArticlesFacade]

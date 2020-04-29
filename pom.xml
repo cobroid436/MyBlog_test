@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ru.alex</groupId>
+    <artifactId>MyBlog_id2</artifactId>
+    <version>1.0-301</version>
+    <packaging>war</packaging>
+    <name>MyBlog_test</name>
+    <description>Пример блога на JAVAEE8</description>
+    <url>https://github.com/sasah/MyBlog_test</url>
+
+    <organization>
+        <name>cobroid436</name>
+        <url>https://github.com/cobroid436</url>
+    </organization>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/cobroid436/MyBlog_test/issues</url>
+    </issueManagement>
+
+    <scm>
+        <connection>scm:git:https://github.com/cobroid436/MyBlog_test.git</connection>
+        <url>https://github.com/cobroid436/MyBlog_test</url>
+    </scm>
+
+    <properties>
+        <version.java>11</version.java>
+        <!-- Lombok -->
+        <lombok.version>1.18.2</lombok.version>
+        <!-- JAXB - API -->
+        <jaxb-api.version>2.3.1</jaxb-api.version>
+        <!-- JAXB - runtime -->
+        <jaxb-runtime.version>2.3.2</jaxb-runtime.version>
+        <!-- Java EE -->
+        <version.glassfish>5.201</version.glassfish>
+        <version.javaee>8.0.1</version.javaee>
+        <version.weld>3.0.0.Alpha1</version.weld>
+        <version.javax.faces>2.3.3</version.javax.faces>
+        <version.javax.faces-api>2.3</version.javax.faces-api>
+        <version.jersey>2.22.2</version.jersey>
+        <version.eclipselink>2.7.5</version.eclipselink>
+        <version.eclipse.persistence>2.7.4</version.eclipse.persistence>
+        <version.hibernate.validator>6.1.0.Final</version.hibernate.validator>
+        <version.commons.validator>1.6</version.commons.validator>
+        <version.commons.lang3>3.10</version.commons.lang3>
+        <version.el>3.0.1-b11</version.el>
+        <version.json>1.0.4</version.json>
+        <!-- Databases -->
+        <version.mysql>8.0.18</version.mysql>
+<!--        <version.mariadb>2.6.0</version.mariadb>-->
+        <!-- Maven Plugins -->
+        <version.maven.jar.plugin>3.2.0</version.maven.jar.plugin>
+        <version.maven.war.plugin>3.2.3</version.maven.war.plugin>
+        <version.maven.processor.plugin>2.2.4</version.maven.processor.plugin>
+        <version.maven.compiler.plugin>3.8.1</version.maven.compiler.plugin>
+        <version.maven.dependency.plugin>2.8</version.maven.dependency.plugin>
+        <version.maven.help.plugin>3.2.0</version.maven.help.plugin>
+        <version.maven.exec.plugin>1.2.1</version.maven.exec.plugin>
+        <version.maven.jaxws.plugin>2.2</version.maven.jaxws.plugin>
+        <version.maven.surefire.plugin>3.0.0-M4</version.maven.surefire.plugin>
+        <version.maven.failsafe.plugin>2.16</version.maven.failsafe.plugin>
+        <version.maven.javadoc.plugin>3.1.1</version.maven.javadoc.plugin>
+        <versions-maven.version>2.7</versions-maven.version>
+        <git-commit-id.version>2.1.15</git-commit-id.version>
+        <maven-release.version>2.5.3</maven-release.version>
+        <!-- Test -->
+        <skipTests>false</skipTests>
+        <skipITs>${skipTests}</skipITs>
+        <skipUTs>${skipTests}</skipUTs>
+        <version.junit>4.13-rc-1</version.junit>
+        <version.xmlunit>1.6</version.xmlunit>
+        <version.mockito>2.0.2-beta</version.mockito>
+        <!-- Project -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <version>${version.commons.validator}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${version.javaee}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- CDI -->
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.faces</artifactId>
+            <version>${version.javax.faces}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.faces</groupId>
+            <artifactId>javax.faces-api</artifactId>
+            <version>${version.javax.faces-api}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Bean Validation -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${version.hibernate.validator}</version>
+        </dependency>
+      
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${version.commons.lang3}</version>
+        </dependency>
+        <!-- EL -->
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.el</artifactId>
+            <version>${version.el}</version>
+        </dependency>
+
+        <!-- JPA -->
+        <!-- https://mvnrepository.com/artifact/org.eclipse.persistence/org.eclipse.persistence.jpa -->
+       <!-- <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa</artifactId>
+            <version>${version.eclipse.persistence}</version>
+        </dependency>-->
+
+        <!-- Parser for Java 9+ -->
+        <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${jaxb-api.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime -->
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>${jaxb-runtime.version}</version>
+        </dependency>
+        <!-- Annotations -->
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>MyBlog_test</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                    <rulesUri>file://${project.basedir}/maven-version-rules.xml</rulesUri>
+                </configuration>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <!-- Apache -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-help-plugin</artifactId>
+                    <version>${version.maven.help.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${version.maven.compiler.plugin}</version>
+                    <inherited>true</inherited>
+                    <configuration>
+                        <source>${version.java}</source>
+                        <target>${version.java}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${version.maven.war.plugin}</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${version.maven.jar.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${version.maven.javadoc.plugin}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>${versions-maven.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${maven-release.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+
+
+</project>

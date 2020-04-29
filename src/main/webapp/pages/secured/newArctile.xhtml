@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+
+<ui:composition template="/resources/views/layout.xhtml">
+
+    <ui:define name="title">New Arcticle Form</ui:define>
+
+    <ui:define name="content">
+            <h:outputStylesheet library="css" name="second.css"/>
+        <div id="main">
+            <div class="container">
+                <div class="col-1-4">
+                    <h2>Страница для добавления новой статьи</h2>
+                    <p>Что бы статья сохранилась успешно, заполните все поля и нажмите на
+                        кнопку "Сохранить"
+                    </p>
+                </div>
+                <div class="col-3-4">
+
+                    <h:form id="NewArctileForm" enctype="multipart/form-data">
+                        <div>
+<!--                            <h:messages  infoClass="infoClass" errorClass="errorClass" layout="table" globalOnly="true"/>-->
+                            <p>
+                                <h:outputLabel value="Тема :" for="articlesTitle"
+                                               styleClass="#{addArticlesController.articlesTitleStyleClass()}"/>
+                                <h:inputText id="articlesTitle" label="Articles Title"
+                                             value="#{addArticlesController.title}"
+                                             required="true"
+                                             binding="#{addArticlesController.articlesTitleInput}">
+                                    <f:validateLength minimum="4" maximum="45"/>
+                                    <f:ajax event="focus" render="msgArticlesTitle"/>
+                                    <f:ajax event="change" render="msgArticlesTitle"/>
+                                </h:inputText>
+                            </p>
+                            <p><h:message id="msgArticlesTitle" for="articlesTitle" errorClass="errorClass"/></p>
+                            <p>
+                                <h:outputLabel value="Описание : " for="articlesDescription"
+                                               styleClass="#{addArticlesController.articlesDescriptionStyleClass()}"/>
+                                <h:inputTextarea id="articlesDescription" label="Articles Descriptiont"
+                                                 value="#{addArticlesController.artdescription}" required="true"
+                                                 binding="#{addArticlesController.articlesDescriptionInput}"
+                                                 rows="10" cols="80">
+                                    <f:validateLength minimum="15" maximum="500"/>
+                                    <f:ajax event="focus" render="msgArticlesDescription"/>
+                                    <f:ajax event="change" render="msgArticlesDescription"/>
+                                </h:inputTextarea>
+                            </p>
+                            <p><h:message id="msgArticlesDescription" for="articlesDescription" errorClass="errorClass" /></p>
+                            <p>
+                                <h:outputLabel value="Дата : " for="articlesDate"
+                                               styleClass="#{addArticlesController.articlesDateStyleClass()}"/>
+                                <h:inputText id="articlesDate" label="Articles Date"
+                                             value="#{addArticlesController.dataArticle}" required="true"
+                                    binding="#{addArticlesController.articlesDateInput}">
+                                    <f:validator validatorId="CustomValidatorValidateDate"/>
+                                    <f:ajax event="change" render="msgArticlesDate"/>
+                                </h:inputText>
+                            </p>
+                            <p> <h:message id="msgArticlesDate" for="articlesDate" errorClass="errorClass"/></p>
+                        </div>
+
+                    <div  id="NewFileForm">
+                        <h3 align='left'>Загрузка файла на сервер</h3>
+                        <a>Размер файла MIN=50 MAX=5242880</a>
+                        <p><h:inputFile id="fileArticle" value="#{addArticlesController.file1}">
+                            <f:validator validatorId="CustomFileValidator"/>
+                            <f:ajax event="change" render="msgUpload"/>
+                        </h:inputFile></p>
+
+                        <div id = "div-msgFileForm">
+                            <p> <h:messages id="msgUpload" infoClass="infoClass" errorClass="errorClass"/>
+                                </p>
+                        </div>
+                        <hr/>
+
+                        <h:commandButton id = "cmdDoAction" value="Create a new arcticle" action="#{addArticlesController.doAction()}">
+                            <f:ajax execute="@form" render="msgResult link-article newArticle source-article"/>
+                        </h:commandButton>
+                        <br/>
+                        <div>
+                            <h:messages id="msgResult" infoClass="infoClass" errorClass="errorClass" layout="table"/>
+                            <h:outputText escape="false" id="link-article" value="#{addArticlesController.linkNew}" />
+                        </div>
+                        <hr/>
+                        <h:outputText id="newArticle" value="#{addArticlesController.text}"/>
+                        <hr/>
+                        <div id="div-article">
+                            <h:outputText escape="false" id="source-article" value="#{addArticlesController.fileNew}" />
+                        </div>
+                    </div>
+                </h:form>
+                    <div id="frm-article">
+                        <!--                        <h:outputText escape="false" id="frm-article-p" value="" />-->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            // Выбираем целевой элемент
+            // var target = document.getElementById('link-article');
+            const MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+
+            // options
+            const config = {
+                attributes: true,
+                childList: true,
+                characterData: true,
+                subtree: true,
+            };
+            // instance
+            const observer = new MutationObserver(function(mutations) {
+                // console.log(`mutations =`, mutations); // MutationRecord
+                mutations.forEach(function(mutation) {
+                    // console.log("mutation =", mutation);
+
+                    if (mutation.type === "childList") {
+                        if (mutation.target &amp;&amp; [...mutation.addedNodes].length) {
+                            console.log(`A child node ${mutation.target} has been added!`, mutation.target);
+                        }
+                        // do somwthings
+                        var elm = document.getElementById('frm-article');
+
+                        if (document.getElementById('NewArctileForm:newArticle') !== null){
+                            var srcelem = document.getElementById('NewArctileForm:newArticle');
+                            if (srcelem.innerText !=""){
+                                var inp = document.createElement('IFRAME');
+                                inp.id = "frame-file"
+                                inp.srcdoc=srcelem.innerText;
+                                inp.height='400px';
+                                inp.width='100%';
+                                inp.align='left';
+                                elm.appendChild(inp);
+                                // srcelem.remove();
+                                srcelem.innerText="";
+                                var msgRemove = document.getElementById('NewArctileForm:msgUpload');
+                                msgRemove.innerText="";
+                            }else {
+
+                            }
+                        }
+                    }
+                });
+            });
+            // instance2
+            const observer2 = new MutationObserver(function(mutations) {
+                // console.log(`mutations =`, mutations); // MutationRecord
+                mutations.forEach(function(mutation) {
+                    // console.log("mutation =", mutation);
+
+                    if (mutation.type === "childList") {
+                        if (mutation.target &amp;&amp; [...mutation.addedNodes].length) {
+                            console.log(`A child node ${mutation.target} has been added!`, mutation.target);
+                        }
+                        // do somwthings
+                        var msgtxt = mutation.target.innerText;
+                        var fndstr = "File it's OK";
+                        if (msgtxt.indexOf(fndstr) !== -1) {
+                            console.log(`Finding MSG "File it's OK"`);
+                            // document.getElementById('NewFileForm:cmdUpload').disabled = false;
+                            document.getElementById('NewArctileForm:cmdDoAction').disabled = false;
+                        }else {
+                            // document.getElementById('NewFileForm:cmdUpload').disabled = true;
+                            document.getElementById('NewArctileForm:cmdDoAction').disabled = true;
+                            if (document.getElementById('frame-file') !== null) {
+                                document.getElementById('frame-file').remove();
+                                document.getElementById('NewArctileForm:source-article').innerText = "";
+                            }
+                            if (document.getElementById('NewArctileForm:newArticle') !== null) {
+                                document.getElementById('NewArctileForm:newArticle').innerText != "";
+                            }
+                        }
+
+                    }
+                });
+            });
+            // управление доступом кнопок форм
+            const list2 = document.getElementById('div-msgFileForm');
+            observer2.observe(list2, config);
+            // управление отображением IFRAME
+            const list = document.getElementById('div-article');
+            observer.observe(list, config);
+        </script>
+        <script type="text/javascript">
+            function cmdDisabler()
+            {
+                document.getElementById('NewArctileForm:cmdDoAction').disabled = true;
+                // document.getElementById('NewFileForm:cmdUpload').disabled = true;
+            }
+        </script>
+    </ui:define>
+</ui:composition>
+</html>

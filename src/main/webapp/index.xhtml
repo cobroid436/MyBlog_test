@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <f:view>
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <h:outputStylesheet library="css" name="header.css"/>
+            <h:outputStylesheet library="css" name="main.css"/>
+            <title>Главная страница блога</title>
+        </h:head>
+        <h:body>
+            <header>
+                <div class="container">
+                    <h:outputLink value ="#{request.contextPath}" class="logo">
+                        <h:graphicImage id="top-image" alt="SISDevelopment" library="svgs" name="basic_notebook_pencil.svg"/>
+                    </h:outputLink>
+                    <nav id="user">
+                        <div id="panelUser">
+                            <ul>
+                                <li id="currentUserName">
+                                    [#{homeController.currentUser.idusers}]
+                                </li>
+                                <li>
+                                    <h:graphicImage id="user-image" alt="Пользователь" library="svgs" name="basic_case.svg"/>
+                                </li>
+                                <li>
+                                    <h:outputLink value="#{homeController.urlLogout()}" rendered="#{homeController.allowedToSeeLogout}">Logout</h:outputLink>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <nav id="user-login">
+                        <ul>
+                            <h:form rendered="#{homeController.allowedToSeeRegAut}">
+                                <li><h:link outcome="pages/public/registration.xhtml" value="Регистрация"/></li>
+                                <li><h:link outcome="login.xhtml" value="Авторизация"/></li>
+                            </h:form>  
+                        </ul>
+                    </nav>
+                    <nav id="user-panel">
+                        <ul>
+                            <li><h:link outcome="pages/secured/newArctile.xhtml" value="New Arctiles"/></li>
+                            <li><a href="">О нас</a></li>
+                            <li><a href="">Контакты</a></li>
+                            <li><h:link outcome="pages/secured/users.xhtml" value="All Users" rendered="#{homeController.allowedToSeeUsers}">
+                                    <f:param name="faces-redirect" value="true" />
+                                </h:link></li>
+                            <li><h:outputLink value="http://localhost:8080/RSCounters" rendered="#{homeController.allowedToSeeUsers}">RestCounter</h:outputLink></li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </header>
+
+            <hr/>
+
+            <div id="main">
+                <div class="container">
+                    <div class="col-1-4">
+                        <h:dataTable id="titleshortlist" value="#{articlesFacade.findAll()}" var="art" border="0">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Темы статей"/>
+                                </f:facet>
+                                <h:link outcome="pages/secured/viewArticle.xhtml" value="#{art.title}">
+                                    <f:param name="id" value="#{art.id}" />
+                                </h:link>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                    <div class="col-3-4">
+                        <h:dataTable id="titlelist" value="#{articlesFacade.findAll()}" var="art" border="0">
+                            <h:column>
+                                <article>
+                                    <h1><h:outputText escape="false" value="#{art.title}"/></h1>
+                                    <div class="text-article">
+                                        <h:outputText escape="false" value="#{art.description} ..." />
+                                    </div>
+                                    <div class="fotter-article">
+                                        <span class="read">
+                                            <h:link outcome="pages/secured/viewArticle.xhtml" value="Читать...">
+                                                <f:param name="id" value="#{art.id}" />
+                                            </h:link>
+                                        </span>
+                                        <span class="owner">
+                                            <h:outputText value ="#{art.idusers.idusers}" />
+                                        </span>
+                                        <span class="date-article">Дата статьи:
+                                            <h:outputText value="#{art.date}" >
+                                                <f:convertDateTime  type="localDate" pattern="dd/MM/yyyy"/>
+                                            </h:outputText>
+                                        </span>
+                                    </div>
+                                </article>
+                            </h:column>
+                        </h:dataTable>
+
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
+            <div id="footer">
+                <div>
+                    <span>Тестовое приложение JAVA EE MyBlog</span>
+                    <span>
+                        <h:outputText value="#{currentDate}">
+                            <f:convertDateTime pattern="dd.MM.yyyy HH:mm" timeZone="Europe/Moscow" type="date" />
+                        </h:outputText>
+                    </span>
+                    <span>
+                        <h:outputLink value="https://onedeveloper.javadev.ru/article%3Fid=3.html" target="_blanc">Уроки по JavaEE</h:outputLink>
+                    </span>
+                    <span> 
+                        <h:outputText class="counter" value="counter: #{controllAddSupport.referer}" />
+                    </span>
+                </div>
+            </div>                     
+        </h:body>
+    </f:view>
+</html>

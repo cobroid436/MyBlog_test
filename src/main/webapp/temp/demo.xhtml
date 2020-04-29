@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:body>
+    	<h:form>
+   		<h:link value="Login page" outcome="login" />
+    	<br/>
+	    <h:link value="Login page + Param " outcome="login" >
+	    	<f:param name="username" value="mkyong" />
+	    </h:link>
+	    <br/>
+   		<h:link outcome="login" >
+   			<h:graphicImage library="images" name="myImage.png" />
+   		</h:link>
+    	<br/>
+   		<h:commandLink value="Login page" />
+    	<br/>
+   		<h:commandLink action="#{user.goLoginPage}" value="Login page" />
+    	<br/>
+   		<h:commandLink action="#{user.goLoginPage}" value="Login page + Param ">
+   			<f:param name="username" value="mkyong" />
+   		</h:commandLink>
+    	<br/>
+   		<h:commandLink action="#{user.goLoginPage}">
+   			<h:graphicImage library="images" name="myImage.png" />
+   		</h:commandLink>
+    	<br/>
+   		<h:outputLink>Login page</h:outputLink>
+    	<br/>
+   		<h:outputLink value="login.xhtml" >Login page</h:outputLink>
+    	<br/>
+   		<h:outputLink value="login.xhtml">
+   			<h:outputText value="Login page" />
+   			<f:param name="username" value="java2s.com" />
+   		</h:outputLink>
+    	<br/>
+   		<h:outputLink value="login.xhtml">
+   			<h:graphicImage library="images" name="myImage.png" />
+   		</h:outputLink>
+    	</h:form>
+    </h:body>
+</html>

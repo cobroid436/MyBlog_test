@@ -1,0 +1,90 @@
+/*
+   Document   : style
+   Created on : 03.12.2019, 22:26:20
+   Author     : Akishev A.
+   Description:
+       Purpose of the stylesheet follows.
+*/
+/*<!-- Style index page -->*/
+
+#main {
+    margin-top: 3px;
+}
+
+/*<!-- Style elements -->*/
+.container:after, .row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.row {
+    margin-bottom: 15px;
+}
+#titleshortlist table{
+    text-align: left;
+    border-bottom: none;
+    border: 1px solid #6666ff;
+    width: 25%;
+}
+#titleshortlist thead tr{
+    margin: 0px;
+    margin-left: 2%;
+    margin-top: 2%;
+    width: 96%;
+    padding: 5px 0px 5px 0px;
+    border-radius: 5px 5px 0px 0px;
+    background: #76a5fc;
+    text-align: center;
+}
+#titleshortlist tbody tr td{
+    cursor: pointer;
+    background: #76befc;
+    padding: 7px 5px;
+    border: 1px solid #6666ff;
+    border-bottom: none;
+}
+#titleshortlist tr td:last-child{
+    border-bottom: 1px solid #6666ff;
+    border-radius: 0px 0px 5px 5px;
+}
+#titleshortlist tbody tr td:hover{
+    -moz-transition: top 1s ease-out 0.2s;
+    -webkit-transition: top 1s ease-out 0.2s;
+    -o-transition: top 1s ease-out 0.2s;
+    transition: top 1s ease-out 0.2s;
+    background: #a2c3dd;
+}
+
+#titleshortlist a{
+    text-decoration: none;
+    padding: 3px 2px;
+}
+#titlelist article{
+    background: #80abdb;
+    border: 1px solid #40658d;
+    border-radius: 5px;
+}
+#titlelist article h1{
+    font-size: 2em;
+    padding: 3px 5px;
+    margin: 0px;
+    border-radius: 5px 5px 0px 0px;
+}
+#titlelist article .text-article{
+    padding: 5px;
+    font-size: 15px;
+    background: #cce6fc;
+}
+#titlelist article .text-article label{
+    margin-right: 10px;
+}
+#titlelist article .fotter-article{
+    height: 23px;
+    background: #8babce;
+    border-radius: 0px 0px 5px 5px;
+    padding: 3px;
+}
+#titlelist article .date-article, .read{
+    float: right;
+    margin-left: 10px;
+}

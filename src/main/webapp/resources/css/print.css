@@ -1,0 +1,148 @@
+body {
+    background-color: white;
+}
+
+div#header {
+    display: none;
+    min-width: 0;
+    width: 0;
+}
+
+div#left {
+    display: none;
+    width: 0;
+}
+
+span.pin {
+    display: none;
+}
+
+span.pin_desc {
+    display: block;
+}
+
+div#content {
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+    border-left: 0;
+    border-right: 0;
+    min-width: 0;
+}
+
+div#rootlink {
+    display: none;
+}
+
+div#counter {
+    display: none;
+}
+
+div#copyright {
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: white;
+    min-width: 0;
+}
+
+p, li {
+    background-color: white;
+    font-size: 90% !important;
+}
+
+code {
+    font-size: 110% !important;
+}
+
+H1, H2, H3, H4, H5 {
+    background-color: white;
+}
+
+pre {
+    background-color: white;
+    padding: 1em;
+    overflow: auto;
+    font-size: 75%;
+}
+
+td.newsHeader {
+    color: black;
+    background: none;
+}
+
+td.newsHeaderR {
+    color: black;
+    background: none;
+}
+
+span.print_only {
+    display: inline;
+}
+
+img.print_only {
+    display: block;
+}
+
+a {
+    text-decoration: underline;
+    color: black;
+    font-style: italic;
+    border-bottom: none;
+}
+
+a:visited {
+    text-decoration: underline;
+    color: black;
+    font-style: italic;
+    border-bottom: none;
+}
+
+.off a {
+    color: #808080;
+}
+
+.off a:visited {
+    color: #808080;
+}
+
+.footnote a {
+    color: #808080;
+}
+
+.footnote a:visited {
+    color: #808080;
+}
+
+#copyright a {
+    color: #808080;
+}
+
+#copyright a:visited {
+    color: #808080;
+}
+
+p.important, div.important {
+    color: black;
+}
+
+H1, H2, H3, H4, H5 {
+    color: black;
+    border-bottom: solid #264A84 0.15em;
+}
+
+H3 a {
+    text-decoration: none
+}
+
+H3 a:visited {
+    text-decoration: none
+}
+
+H4 a {
+    text-decoration: none
+}
+
+H4 a:visited {
+    text-decoration: none
+}

@@ -1,0 +1,31 @@
+/*
+   Document   : style
+   Created on : 03.12.2019, 22:26:20
+   Author     : Akishev A.
+   Description:
+       Purpose of the stylesheet follows.
+*/
+
+/*<!-- Style elements -->*/
+#main{
+    margin-top: 3px;
+}
+
+/*<!-- Style NewArctile page -->*/
+#NewArctileForm .formGrid {
+    /*border: solid #000 3px;*/
+}
+
+
+/*<!-- Style registration page -->*/
+
+#userLogin:invalid{
+    border: 2px dashed red;
+}
+#userLogin:valid{
+    border: 2px solid black;
+}
+#newArticle{
+    font-size: 0;
+    content: none;
+}

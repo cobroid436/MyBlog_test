@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="../../views/layout.xhtml">
+
+        <ui:define name="title">Registration Form</ui:define>
+
+        <ui:define name="content">
+
+            <div id="main">
+                <div class="container">
+                    <div class="col-1-4">
+                        <h2>Регистрация</h2>
+                        <p>Что бы регистрация прошла успешно, заполните все поля и нажмите на
+                            кнопку "Зарегистрироваться"
+                        </p>
+                    </div>
+                    <div class="col-3-4">
+                        <h:form id="registrationForm">
+                            <div>
+                                <h:messages  infoClass="infoClass" errorClass="errorClass" layout="table" globalOnly="true"/>
+                                <article>
+                                    <h:panelGrid columns="1" rowClasses="oddRow,evenRow">
+                                        <h:panelGroup>
+                                            <h:outputLabel value="Логин : " for="idusers"
+                                                           styleClass="#{addUserController.idusersInputStyleClass()}"/>
+                                            <h:inputText id="idusers" label="User Login"
+                                                         value="#{addUserController.idusers}" required="true"
+                                                         binding ="#{addUserController.idusersInput}">
+                                                <f:validateLength minimum="4" maximum="25"/>
+                                                <f:validator validatorId="CustomValidatorValidateAlphaNumber"/>
+                                                <f:validator validatorId="CustomValidatorValidateUniqLogin"/>
+                                                <f:ajax event="focus" render="msgIdusers"/>
+                                                <f:ajax event="change" render="msgIdusers"/>
+                                            </h:inputText>
+                                            <h:message id ="msgIdusers" for="idusers" errorClass="errorClass"/>
+                                        </h:panelGroup>
+                                        <h:panelGroup>
+                                            <h:outputLabel value="Имя аккаунта : " for="name"/>
+                                            <h:inputText id="name" label="User Name"
+                                                         value="#{addUserController.name}" required="true"
+                                                         binding ="#{addUserController.nameInput}">
+                                                <f:validateLength minimum="4" maximum="250"/>
+                                                <f:validator validatorId="CustomValidatorValidateAlpha"/>
+                                                <f:ajax event="focus" render="msgName"/>
+                                                <f:ajax event="change" render="msgName"/>
+                                            </h:inputText>
+                                            <h:message id = "msgName" for="name" errorClass="errorClass"/>
+                                        </h:panelGroup>
+                                        <h:panelGroup>
+                                            <h:outputLabel value="E-Mail : " for="email"
+                                                           styleClass="#{addUserController.emailStyleClass()}"/>
+                                            <h:inputText id="email" label="User Email" value="#{addUserController.email}" required="true"
+                                                         binding ="#{addUserController.emailInput}">
+                                                <f:validateLength maximum="55"/>
+                                                <f:validator validatorId="CustomValidatorValidateEmail"/>
+                                                <f:validator validatorId="CustomValidatorUniqEmail"/>
+                                                <f:ajax event="focus" render="msgEmail"/>
+                                                <f:ajax event="change" render="msgEmail"/>
+                                            </h:inputText>
+                                            <h:message id = "msgEmail" for="email" errorClass="errorClass"/>
+                                        </h:panelGroup>
+                                        <h:panelGroup>
+                                            <h:outputLabel value="Пароль : " for="password"
+                                                           styleClass="#{addUserController.passwordStyleClass()}" />
+                                            <h:inputSecret id="password" label="User Password" value="#{addUserController.pass}" required="true"
+                                                           binding ="#{addUserController.passwordInput}">
+                                                <f:validateLength minimum="6" maximum="70"/>
+                                                <f:validator validatorId="CustomValidatorValidatePass"/>
+                                                <f:ajax event="focus" render="msgPass"/>
+                                                <f:ajax event="change" render="msgPass"/>
+                                            </h:inputSecret>
+                                            <h:message id ="msgPass" for="password" errorClass="errorClass"/>
+                                        </h:panelGroup>
+                                        <h:panelGroup>
+                                            <h:outputLabel value="Повторите пароль: " for="passwordRetry"
+                                                           styleClass="#{addUserController.passwordRetryStyleClass()}"/>
+                                            <h:inputSecret id="passwordRetry" label="User PasswordRetry" required="true"
+                                                           binding ="#{addUserController.passwordRetryInput}">
+                                                <f:validateLength minimum="6" maximum="70"/>
+<!--                                                <f:validator validatorId="CustomValidatorValidatePassRetry"/>-->
+                                                <f:ajax event="change" render="msgPassRetry"/>
+                                            </h:inputSecret>
+                                            <h:message id ="msgPassRetry" for="passwordRetry" errorClass="errorClass"/>
+                                        </h:panelGroup>
+                                    </h:panelGrid>
+
+                                    <h:commandButton value="Зарегистрироваться" action="#{addUserController.doCreateUser}">
+                                    </h:commandButton>
+                                </article>
+                            </div>
+                        </h:form>                        
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+
+    </ui:composition>
+</html>
