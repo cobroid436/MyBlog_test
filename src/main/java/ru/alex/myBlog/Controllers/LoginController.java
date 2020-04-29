@@ -76,7 +76,7 @@ public class LoginController implements Serializable {
                 facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Creditials", null));
                 break;
             case SUCCESS:
-                getExternalContext().redirect(getExternalContext().getRequestContextPath()+"/index.xhtml");
+                getExternalContext().redirect(getExternalContext().getRequestContextPath());
                 break;
         }
     }
