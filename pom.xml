@@ -41,7 +41,7 @@
         <version.jersey>2.22.2</version.jersey>
         <version.eclipselink>2.7.5</version.eclipselink>
         <version.eclipse.persistence>2.7.4</version.eclipse.persistence>
-        <version.hibernate.validator>6.1.0.Final</version.hibernate.validator>
+        <version.hibernate.validator>6.1.5.Final</version.hibernate.validator>
         <version.commons.validator>1.6</version.commons.validator>
         <version.commons.lang3>3.10</version.commons.lang3>
         <version.el>3.0.1-b11</version.el>
