@@ -36,7 +36,7 @@
         <version.glassfish>5.201</version.glassfish>
         <version.javaee>8.0.1</version.javaee>
         <version.weld>3.0.0.Alpha1</version.weld>
-        <version.javax.faces>2.3.3</version.javax.faces>
+        <version.javax.faces>2.3.7</version.javax.faces>
         <version.javax.faces-api>2.3</version.javax.faces-api>
         <version.jersey>2.22.2</version.jersey>
         <version.eclipselink>2.7.5</version.eclipselink>
